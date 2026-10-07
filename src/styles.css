@@ -370,10 +370,12 @@
   }
   .planning-pdf-page {
     width: 297mm !important;
-    height: 210mm !important;
+    height: 209mm !important;
     max-width: none !important;
     margin: 0 !important;
     box-shadow: none !important;
+    overflow: hidden !important;
+    contain: strict;
     page-break-inside: avoid;
     break-inside: avoid;
     page-break-after: always;
@@ -385,9 +387,15 @@
   }
   .planning-pdf-content {
     inset: 5mm;
+    contain: strict;
   }
+  /* Use zoom (affects layout) instead of transform so the real height of
+     the sheet shrinks and the browser never spills it onto a 2nd sheet. */
   .planning-pdf-sheet {
-    transform: translate(var(--print-x, 0px), var(--print-y, 0px)) scale(var(--print-scale, 1)) !important;
+    transform: none !important;
+    zoom: var(--print-scale, 1);
+    left: calc(var(--print-x, 0px) / var(--print-scale, 1)) !important;
+    top: calc(var(--print-y, 0px) / var(--print-scale, 1)) !important;
   }
   .planning-pdf-sheet,
   .planning-pdf-sheet table,
