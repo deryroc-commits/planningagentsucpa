@@ -124,8 +124,13 @@ export const Route = createFileRoute("/p/$token")({
   },
   head: () => ({
     meta: [
-      { title: "Mon planning" },
+      { title: "Planning partagé — Planning des agents" },
       { name: "robots", content: "noindex" },
+      { name: "description", content: "Consultez le planning des agents partagé avec vous." },
+      { property: "og:title", content: "Planning partagé — Planning des agents" },
+      { property: "og:description", content: "Consultez le planning des agents partagé avec vous." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: SharedPlanningPage,
