@@ -133,7 +133,13 @@ export function PrintView({ month, setMonth }: PrintViewProps) {
     return out;
   }, [visibleAgents]);
 
-  const pages = useMemo(() => paginateGroups(groups, AGENTS_PER_PAGE), [groups]);
+  // "Page adaptée" puts every agent on a single sheet (scaled down);
+  // otherwise rows flow across pages of AGENTS_PER_PAGE rows.
+  const [fitOnePage, setFitOnePage] = useState(false);
+  const pages = useMemo(
+    () => (fitOnePage ? [groups] : paginateGroups(groups, AGENTS_PER_PAGE)),
+    [groups, fitOnePage],
+  );
   const colCount = indices.length + 1;
 
   return (
@@ -143,8 +149,12 @@ export function PrintView({ month, setMonth }: PrintViewProps) {
           <h2 className="text-lg font-semibold">Aperçu avant impression</h2>
           <p className="text-sm text-muted-foreground">
             Vue mensuelle formatée, prête à imprimer ou exporter en PDF.
-            {pages.length > 1 && (
-              <> {pages.length} pages générées automatiquement.</>
+            {fitOnePage ? (
+              <> Tout le planning est réduit sur une seule page.</>
+            ) : (
+              pages.length > 1 && (
+                <> {pages.length} pages générées automatiquement.</>
+              )
             )}
           </p>
         </div>
@@ -219,6 +229,18 @@ export function PrintView({ month, setMonth }: PrintViewProps) {
                   {p.name}
                 </SelectItem>
               ))}
+            </SelectContent>
+          </Select>
+          <Select
+            value={fitOnePage ? "one" : "multi"}
+            onValueChange={(v) => setFitOnePage(v === "one")}
+          >
+            <SelectTrigger className="w-48" aria-label="Mise en page">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="multi">Pages multiples</SelectItem>
+              <SelectItem value="one">Page adaptée (1 page)</SelectItem>
             </SelectContent>
           </Select>
           <Select
