@@ -272,7 +272,11 @@ export function PrintView({ month, setMonth }: PrintViewProps) {
             </Button>
           )}
 
+          <Button onClick={() => window.print()}>
+            <Printer /> Imprimer
+          </Button>
           <Button
+            variant="outline"
             disabled={pdfSaving}
             onClick={async () => {
               if (!pageRef.current) return;
@@ -283,13 +287,18 @@ export function PrintView({ month, setMonth }: PrintViewProps) {
                   `Planning Agents _ ${MONTHS[month]} ${year}.pdf`,
                   pdfFormat,
                 );
+                toast.success("PDF téléchargé");
+              } catch (e) {
+                toast.error("Export PDF impossible", {
+                  description: e instanceof Error ? e.message : undefined,
+                });
               } finally {
                 setPdfSaving(false);
               }
             }}
           >
-            {pdfSaving ? <Loader2 className="animate-spin" /> : <Printer />}
-            {pdfSaving ? "Génération…" : "Imprimer / PDF"}
+            {pdfSaving ? <Loader2 className="animate-spin" /> : <FileDown />}
+            {pdfSaving ? "Génération…" : "PDF"}
           </Button>
         </div>
       </div>
