@@ -1,5 +1,5 @@
 # Printing correction
 
-- [ ] Remove screen framing and reserved height from printed planning sheets.
-- [ ] Verify single-page and multi-page printing with an authenticated planning.
-- [ ] Inspect rendered PDFs for blank pages, clipping, and legend placement.
+- [x] Remove screen framing and reserved height from printed planning sheets.
+- [x] Verify single-page and multi-page modes with an authenticated planning; both produce the expected one sheet for October.
+- [x] Inspect rendered PDFs: blank first/last sheets and overflowing frame removed; full planning and legend remain visible.
