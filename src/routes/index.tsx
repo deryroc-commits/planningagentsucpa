@@ -19,18 +19,22 @@ import { DEFAULT_TITLES } from "@/lib/workspace/workspace-context";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Planning des agents" },
+      { title: "Accueil — Planning des agents" },
       {
         name: "description",
         content:
           "Application de gestion du planning annuel des agents : planning général, statistiques, roulement des week-ends, paramètres, base agents et impression.",
       },
-      { property: "og:title", content: "Planning des agents" },
+      { property: "og:title", content: "Accueil — Planning des agents" },
       {
         property: "og:description",
         content:
           "Gestion du planning annuel des agents : planning général, statistiques, roulement des week-ends, paramètres, base agents, impression.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary_large_image" },
+      { property: "og:image", content: homeBg.url },
+      { name: "twitter:image", content: homeBg.url },
     ],
   }),
   component: HomePage,

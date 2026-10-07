@@ -31,18 +31,20 @@ export const Route = createFileRoute("/app")({
   },
   head: () => ({
     meta: [
-      { title: "Planning des agents" },
+      { title: "Planning annuel — Planning des agents" },
       {
         name: "description",
         content:
           "Grille de planning annuel type Excel : saisie contrôlée, calcul automatique des heures, jours fériés et week-ends colorés, impression et export.",
       },
-      { property: "og:title", content: "Planning des agents" },
+      { property: "og:title", content: "Planning annuel — Planning des agents" },
       {
         property: "og:description",
         content:
           "Planning annuel type Excel : saisie contrôlée, calcul des heures, jours fériés, impression et export.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: AppRoute,

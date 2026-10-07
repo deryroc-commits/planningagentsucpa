@@ -343,9 +343,35 @@
   @page { size: A4 landscape; margin: 0; }
   /* Overtime sheet prints A4 portrait, full page with a small margin */
   @page portrait-page { size: A4 portrait; margin: 8mm; }
-
-
-
+  /* Screen wrappers must not reserve space around a full physical sheet.
+     Padding can move an unbreakable sheet onto page 2; min-h-screen adds
+     a trailing blank page. Keep this scoped to the planning print view. */
+  body:has(.planning-pdf-page),
+  body:has(.planning-pdf-page) *:has(.print-area) {
+    display: block !important;
+    position: static !important;
+    width: auto !important;
+    max-width: none !important;
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    background: transparent !important;
+    overflow: visible !important;
+    gap: 0 !important;
+  }
+  .print-area > div {
+    display: block !important;
+    width: 297mm !important;
+    max-width: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
   /* Keep every application color when printing */
   .print-area,
   .print-area * {
