@@ -36,9 +36,9 @@ const GUIDES: Guide[] = [
     image: safariImage,
     alt: "Safari sur iPhone : icône Partager, option Sur l’écran d’accueil, puis bouton Ajouter.",
     steps: [
-      { label: "Partager", text: "Ouvrez l’application dans Safari et touchez Partager (carré avec une flèche vers le haut).", x: 14.71, y: 82.23, w: 4.29, h: 6.84 },
-      { label: "Écran d’accueil", text: "Faites défiler le menu et choisissez « Sur l’écran d’accueil ».", x: 36.78, y: 68.26, w: 26.24, h: 6.15 },
-      { label: "Ajouter", text: "Confirmez avec « Ajouter » ; l’icône apparaît sur votre écran d’accueil.", x: 90.89, y: 14.84, w: 5.99, h: 4.1 },
+      { label: "Partager", text: "Ouvrez l’application dans Safari et touchez Partager (carré avec une flèche vers le haut).", x: 14.71, y: 82.23, w: 4.29, h: 6.84, anchor: "bottom" },
+      { label: "Écran d’accueil", text: "Faites défiler le menu et choisissez « Sur l’écran d’accueil ».", x: 36.78, y: 68.26, w: 26.24, h: 6.15, anchor: "left" },
+      { label: "Ajouter", text: "Confirmez avec « Ajouter » ; l’icône apparaît sur votre écran d’accueil.", x: 89.0, y: 14.36, w: 7.9, h: 5.08, anchor: "bottom" },
     ],
   },
   {
@@ -46,9 +46,9 @@ const GUIDES: Guide[] = [
     image: chromeImage,
     alt: "Chrome sur Android : menu à trois points, Ajouter à l’écran d’accueil, puis Installer.",
     steps: [
-      { label: "Menu ⋮", text: "Ouvrez l’application dans Chrome et touchez le menu ⋮ en haut à droite.", x: 28.32, y: 13.28, w: 3.26, h: 5.86 },
-      { label: "Écran d’accueil", text: "Choisissez « Ajouter à l’écran d’accueil » ou « Installer l’application », selon votre version.", x: 43.42, y: 42.29, w: 20.64, h: 6.25 },
-      { label: "Installer", text: "Touchez « Installer » et confirmez si une étape supplémentaire est proposée.", x: 85.55, y: 57.91, w: 10.42, h: 7.32 },
+      { label: "Menu ⋮", text: "Ouvrez l’application dans Chrome et touchez le menu ⋮ en haut à droite.", x: 27.6, y: 12.8, w: 4.0, h: 6.7, anchor: "bottom" },
+      { label: "Écran d’accueil", text: "Choisissez « Ajouter à l’écran d’accueil » ou « Installer l’application », selon votre version.", x: 43.42, y: 42.29, w: 20.64, h: 6.25, anchor: "left" },
+      { label: "Installer", text: "Touchez « Installer » et confirmez si une étape supplémentaire est proposée.", x: 85.55, y: 57.91, w: 10.42, h: 7.32, anchor: "bottom" },
     ],
   },
 ];
@@ -66,7 +66,17 @@ function StepMarker({ step, number }: { step: Step; number: number }) {
         bottom: `${100 - step.y - step.h}%`,
       }}
     >
-      <span className="absolute left-0 top-0 grid size-6 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full bg-primary text-[11px] font-bold leading-none text-primary-foreground shadow-md ring-2 ring-background sm:size-7 sm:text-xs">
+      <span
+        className={`absolute grid size-6 place-items-center rounded-full bg-primary text-[11px] font-bold leading-none text-primary-foreground shadow-md ring-2 ring-background sm:size-7 sm:text-xs ${
+          step.anchor === "top"
+            ? "left-1/2 top-0 -translate-x-1/2 -translate-y-full"
+            : step.anchor === "bottom"
+              ? "bottom-0 left-1/2 -translate-x-1/2 translate-y-full"
+              : step.anchor === "left"
+                ? "left-0 top-1/2 -translate-x-full -translate-y-1/2"
+                : "right-0 top-1/2 -translate-x-full -translate-y-1/2"
+        }`}
+      >
         {number}
       </span>
     </span>
