@@ -24,6 +24,13 @@ function isIos(): boolean {
   return /iphone|ipad|ipod/i.test(navigator.userAgent);
 }
 
+/** iOS browsers that never offer installation: only Safari can (Apple restriction). */
+function isIosNonSafari(): boolean {
+  const ua = navigator.userAgent;
+  if (!isIos()) return false;
+  return /CriOS|FxiOS|EdgiOS|OPT\/|DuckDuckGo|GSA\//i.test(ua);
+}
+
 function inIframe(): boolean {
   try {
     return window.self !== window.top;
