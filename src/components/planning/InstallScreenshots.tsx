@@ -100,8 +100,8 @@ export function InstallScreenshots() {
     <div className="mt-5 border-t border-border pt-5">
       <h4 className="text-base font-semibold">Installation en images</h4>
       <p className="mt-1 text-xs text-muted-foreground">
-        Les repères numérotés <span aria-hidden="true">1, 2 et 3</span> posés sur les captures correspondent aux étapes écrite
-        s sous chaque image. Écrans illustrés : la présentation et les intitulés peuvent varier selon la version du téléphone.
+        Les repères numérotés <span aria-hidden="true">1, 2 et 3</span> posés sur les captures correspondent aux étapes listées sous chaque
+        image. Écrans illustrés : la présentation et les intitulés peuvent varier selon la version du téléphone.
       </p>
       <div className="mt-4 grid min-w-0 gap-6 lg:grid-cols-2">
         {GUIDES.map((guide) => (
