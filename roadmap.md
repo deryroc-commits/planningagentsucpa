@@ -1,7 +1,7 @@
 # Installation illustrations
 
 - [x] Add illustrated Safari iPhone and Chrome Android installation steps to Help.
-- [ ] Verify both images and enlarged views in an authenticated session.
+- [x] Verify both images and enlarged views in an authenticated session.
 
 # Printing correction
 
