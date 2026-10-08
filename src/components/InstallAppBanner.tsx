@@ -123,7 +123,16 @@ export function InstallAppBanner() {
           <p className="text-sm font-semibold">Installer {APP_NAME}</p>
           {manual ? (
             <p className="mt-1 text-xs text-muted-foreground">
-              {isIos() || iosHint ? (
+              {safariSwitch ? (
+                <>
+                  Vous utilisez un navigateur autre que Safari sur iPhone : Apple autorise
+                  l'installation uniquement depuis Safari. Ouvrez{" "}
+                  <span className="font-medium text-foreground">{window.location.origin}</span> dans
+                  Safari, puis appuyez sur{" "}
+                  <Share className="inline size-3.5 align-text-bottom" aria-hidden /> Partager → «
+                  Sur l'écran d'accueil ».
+                </>
+              ) : iosHint ? (
                 <>
                   Sur iPhone/iPad : appuyez sur{" "}
                   <Share className="inline size-3.5 align-text-bottom" aria-hidden /> Partager, puis
