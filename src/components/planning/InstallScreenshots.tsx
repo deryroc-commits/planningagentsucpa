@@ -36,7 +36,7 @@ const GUIDES: Guide[] = [
     image: safariImage,
     alt: "Safari sur iPhone : icône Partager, option Sur l’écran d’accueil, puis bouton Ajouter.",
     steps: [
-      { label: "Partager", text: "Ouvrez l’application dans Safari et touchez Partager (carré avec une flèche vers le haut).", x: 14.71, y: 82.23, w: 4.29, h: 6.84, anchor: "bottom" },
+      { label: "Partager", text: "Ouvrez l’application dans Safari et touchez Partager (carré avec une flèche vers le haut).", x: 14.71, y: 82.23, w: 4.29, h: 6.84, anchor: "top" },
       { label: "Écran d’accueil", text: "Faites défiler le menu et choisissez « Sur l’écran d’accueil ».", x: 36.78, y: 68.26, w: 26.24, h: 6.15, anchor: "left" },
       { label: "Ajouter", text: "Confirmez avec « Ajouter » ; l’icône apparaît sur votre écran d’accueil.", x: 89.0, y: 14.36, w: 7.9, h: 5.08, anchor: "bottom" },
     ],
@@ -69,12 +69,12 @@ function StepMarker({ step, number }: { step: Step; number: number }) {
       <span
         className={`absolute grid size-6 place-items-center rounded-full bg-primary text-[11px] font-bold leading-none text-primary-foreground shadow-md ring-2 ring-background sm:size-7 sm:text-xs ${
           step.anchor === "top"
-            ? "left-1/2 top-0 -translate-x-1/2 -translate-y-full"
+            ? "left-1/2 top-0 -translate-x-1/2 -translate-y-[calc(100%+3px)]"
             : step.anchor === "bottom"
-              ? "bottom-0 left-1/2 -translate-x-1/2 translate-y-full"
+              ? "bottom-0 left-1/2 -translate-x-1/2 translate-y-[calc(100%+3px)]"
               : step.anchor === "left"
-                ? "left-0 top-1/2 -translate-x-full -translate-y-1/2"
-                : "right-0 top-1/2 translate-x-full -translate-y-1/2"
+                ? "left-0 top-1/2 -translate-x-[calc(100%+3px)] -translate-y-1/2"
+                : "right-0 top-1/2 translate-x-[calc(100%+3px)] -translate-y-1/2"
         }`}
       >
         {number}
