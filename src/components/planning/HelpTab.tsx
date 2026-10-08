@@ -632,6 +632,11 @@ const SECTIONS: Section[] = [
         text: "Depuis le navigateur, ajoutez l'application à l'écran d'accueil. Sur Android, une APK est disponible. Sur iPhone/iPad, l'installation se fait uniquement depuis Safari (Apple l'interdit dans Chrome/Firefox/Edge) : ouvrez l'adresse de l'application dans Safari, puis Partager → « Sur l'écran d'accueil ». Un bandeau propose de copier l'adresse lorsque vous naviguez avec un autre navigateur.",
       },
       {
+        title: "iPhone vs Android : pourquoi cette différence ?",
+        text: "Sur Android, Chrome et Edge détectent l'application et proposent directement « Installer l'application » dans leur menu. Sur iPhone/iPad, Apple impose son moteur Safari à tous les navigateurs et réserve l'installation à Safari : Chrome, Firefox et Edge ne proposent donc jamais « Sur l'écran d'accueil ». Il faut ouvrir l'adresse dans Safari, puis Partager → « Sur l'écran d'accueil ». Le bandeau d'installation détecte un autre navigateur sur iPhone et propose de copier l'adresse pour la coller dans Safari.",
+      },
+
+      {
         title: "Bandeau « Mode hors ligne »",
         text: "Dès que la connexion est perdue (ou bloquée par le réseau d'entreprise), un bandeau rouge s'affiche en haut de l'écran. Il confirme que les données locales de l'appareil sont utilisées et disparaît automatiquement au retour du réseau.",
       },
@@ -648,7 +653,12 @@ const SECTIONS: Section[] = [
         text: "Dès qu'Internet revient, les changements locaux sont envoyés au cloud automatiquement après connexion, sans aucune action de votre part.",
       },
     ],
+    tips: [
+      "iPhone/iPad : l'installation ne fonctionne que depuis Safari — Chrome, Firefox et Edge ne proposent rien, c'est une restriction d'Apple, pas de l'application.",
+      "Android : Chrome propose « Installer l'application » dans son menu, et une APK reste disponible.",
+    ],
   },
+
   {
     id: "aide-recherche",
     title: "Recherche dans l'aide",
