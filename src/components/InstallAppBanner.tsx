@@ -156,6 +156,32 @@ export function InstallAppBanner() {
               Installer
             </Button>
           )}
+          {manual && safariSwitch && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="mt-2"
+              onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(window.location.origin);
+                  setCopied(true);
+                  window.setTimeout(() => setCopied(false), 2500);
+                } catch {
+                  /* ignore */
+                }
+              }}
+            >
+              {copied ? (
+                <>
+                  <Check className="size-4" aria-hidden /> Adresse copiée !
+                </>
+              ) : (
+                <>
+                  <Copy className="size-4" aria-hidden /> Copier l'adresse pour Safari
+                </>
+              )}
+            </Button>
+          )}
         </div>
         <Button
           variant="ghost"
