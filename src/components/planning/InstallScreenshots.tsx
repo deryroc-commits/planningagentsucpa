@@ -4,10 +4,14 @@ import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } 
 import safariImage from "@/assets/install-safari-iphone.jpg";
 import chromeImage from "@/assets/install-chrome-android.jpg";
 
+/** Côté de l'encadré où la pastille est posée, dans une zone vide de la capture. */
+type Anchor = "top" | "bottom" | "left" | "right";
+
 /**
  * Une étape d'installation.
  * x, y, w, h sont des pourcentages de la capture (origine en haut à gauche) et
- * délimitent la zone exacte à montrer : l'encadré et le repère numéroté s'y posent.
+ * délimitent la zone exacte à montrer : l'encadré s'y pose, la pastille numérotée
+ * juste à côté, côté `anchor`.
  */
 type Step = {
   label: string;
@@ -16,6 +20,7 @@ type Step = {
   y: number;
   w: number;
   h: number;
+  anchor: Anchor;
 };
 
 type Guide = {
