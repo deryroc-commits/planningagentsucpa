@@ -24,7 +24,7 @@ MM = 96 / 25.4
 PRINTABLE_PORTRAIT_MM = 210 - 16  # A4 portrait minus the 8mm @page portrait-page margins
 
 
-async def check_sheet_header(browser, output, tab, heading, area_selector):
+async def check_sheet_header(browser, output, tab, heading, area_selector, auth):
     """A sheet's title banner must print as one row inside its own page width."""
     context = await browser.new_context(viewport={"width": 1280, "height": 1800}, service_workers="block")
     page = await context.new_page()
@@ -116,7 +116,7 @@ async def main():
         auth = json.load(f)
     async with async_playwright() as p:
         browser = await p.chromium.launch(headless=True)
-        context = await browser.new_context(viewport={"width": 1280, "height": 1800})
+        context = await browser.new_context(viewport={"width": 1280, "height": 1800}, service_workers="block")
         page = await context.new_page()
         await page.goto("http://localhost:8080")
         await page.evaluate(
@@ -139,7 +139,18 @@ async def main():
         expected = await page.locator(".planning-pdf-page").count()
         await page.pdf(path=str(output / "after-multi.pdf"), prefer_css_page_size=True, print_background=True)
         assert page_count(output / "after-multi.pdf") == expected, "Multi-page printing added blank sheets"
-        print(f"PASS: Imprimer opens printing; fitted = 1 sheet; multi-page = {expected} sheets.")
+        await context.close()
+        await check_sheet_rule_is_scoped(browser)
+        await check_sheet_header(
+            browser, output, "overtime", "HEURES SUPPLÉMENTAIRES", ".overtime-print-area", auth
+        )
+        await check_sheet_header(
+            browser, output, "mods", "MODIFICATIONS DU PLANNING", ".print-area", auth
+        )
+        print(
+            f"PASS: Imprimer opens printing; fitted = 1 sheet; multi-page = {expected} sheets; "
+            "overtime/modifications headers print as one row inside the page."
+        )
         await browser.close()
 
 
