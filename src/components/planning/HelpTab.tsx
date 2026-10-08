@@ -29,6 +29,7 @@ import {
 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { InstallScreenshots } from "@/components/planning/InstallScreenshots";
 
 type Section = {
   id: string;
@@ -1035,6 +1036,8 @@ export function HelpTab() {
             <p className="mt-2 text-sm text-muted-foreground">
               <Highlight text={s.intro} query={query} />
             </p>
+
+            {s.id === "offline" && <InstallScreenshots />}
 
             <ol className="mt-4 space-y-3">
               {s.steps.map((step, i) => (
