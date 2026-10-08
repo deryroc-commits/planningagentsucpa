@@ -76,7 +76,9 @@ export function InstallAppBanner() {
     const timer = window.setTimeout(() => {
       setVisible((v) => {
         if (v) return v;
-        setIosHint(isIos());
+        const iosNonSafari = isIosNonSafari();
+        setSafariSwitch(iosNonSafari);
+        setIosHint(isIos() && !iosNonSafari);
         return true;
       });
     }, 2500);
