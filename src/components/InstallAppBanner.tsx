@@ -48,6 +48,8 @@ function inIframe(): boolean {
 export function InstallAppBanner() {
   const [visible, setVisible] = useState(false);
   const [iosHint, setIosHint] = useState(false);
+  const [safariSwitch, setSafariSwitch] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
