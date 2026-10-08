@@ -1,3 +1,8 @@
+# Installation illustrations
+
+- [x] Add illustrated Safari iPhone and Chrome Android installation steps to Help.
+- [x] Verify both images and enlarged views in an authenticated session.
+
 # Printing correction
 
 - [x] Remove screen framing and reserved height from printed planning sheets.
