@@ -1,3 +1,8 @@
+# Installation guide markers
+
+- [x] Add numbered legends and visual markers to the Safari iPhone and Chrome Android illustrations.
+- [x] Verify in an authenticated session that each marker frames its element and no circle hides a label or icon.
+
 # Installation illustrations
 
 - [x] Add illustrated Safari iPhone and Chrome Android installation steps to Help.
