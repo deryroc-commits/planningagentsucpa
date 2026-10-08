@@ -364,7 +364,11 @@
     overflow: visible !important;
     gap: 0 !important;
   }
-  .print-area > div {
+  /* The wrapper around the planning sheets must span exactly one physical
+     A4 sheet. Scope it to the planning view: overtime and modifications
+     sheets render their title banner as a direct child of .print-area and
+     must keep their own flex row and their own page width. */
+  body:has(.planning-pdf-page) .print-area > div {
     display: block !important;
     width: 297mm !important;
     max-width: none !important;
