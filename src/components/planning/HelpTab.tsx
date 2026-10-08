@@ -629,7 +629,7 @@ const SECTIONS: Section[] = [
     steps: [
       {
         title: "Installation PWA",
-        text: "Depuis le navigateur, ajoutez l'application à l'écran d'accueil. Sur Android, une APK est disponible.",
+        text: "Depuis le navigateur, ajoutez l'application à l'écran d'accueil. Sur Android, une APK est disponible. Sur iPhone/iPad, l'installation se fait uniquement depuis Safari (Apple l'interdit dans Chrome/Firefox/Edge) : ouvrez l'adresse de l'application dans Safari, puis Partager → « Sur l'écran d'accueil ». Un bandeau propose de copier l'adresse lorsque vous naviguez avec un autre navigateur.",
       },
       {
         title: "Bandeau « Mode hors ligne »",
