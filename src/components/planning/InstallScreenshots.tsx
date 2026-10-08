@@ -74,7 +74,7 @@ function StepMarker({ step, number }: { step: Step; number: number }) {
               ? "bottom-0 left-1/2 -translate-x-1/2 translate-y-full"
               : step.anchor === "left"
                 ? "left-0 top-1/2 -translate-x-full -translate-y-1/2"
-                : "right-0 top-1/2 -translate-x-full -translate-y-1/2"
+                : "right-0 top-1/2 translate-x-full -translate-y-1/2"
         }`}
       >
         {number}
