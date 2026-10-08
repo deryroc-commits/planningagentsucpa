@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Download, Share, X } from "lucide-react";
+import { Copy, Check, Download, Share, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 
@@ -24,6 +24,13 @@ function isIos(): boolean {
   return /iphone|ipad|ipod/i.test(navigator.userAgent);
 }
 
+/** iOS browsers that never offer installation: only Safari can (Apple restriction). */
+function isIosNonSafari(): boolean {
+  const ua = navigator.userAgent;
+  if (!isIos()) return false;
+  return /CriOS|FxiOS|EdgiOS|OPT\/|DuckDuckGo|GSA\//i.test(ua);
+}
+
 function inIframe(): boolean {
   try {
     return window.self !== window.top;
@@ -41,6 +48,8 @@ function inIframe(): boolean {
 export function InstallAppBanner() {
   const [visible, setVisible] = useState(false);
   const [iosHint, setIosHint] = useState(false);
+  const [safariSwitch, setSafariSwitch] = useState(false);
+  const [copied, setCopied] = useState(false);
   const [deferred, setDeferred] = useState<BeforeInstallPromptEvent | null>(null);
 
   useEffect(() => {
@@ -67,7 +76,9 @@ export function InstallAppBanner() {
     const timer = window.setTimeout(() => {
       setVisible((v) => {
         if (v) return v;
-        setIosHint(isIos());
+        const iosNonSafari = isIosNonSafari();
+        setSafariSwitch(iosNonSafari);
+        setIosHint(isIos() && !iosNonSafari);
         return true;
       });
     }, 2500);
@@ -112,7 +123,16 @@ export function InstallAppBanner() {
           <p className="text-sm font-semibold">Installer {APP_NAME}</p>
           {manual ? (
             <p className="mt-1 text-xs text-muted-foreground">
-              {isIos() || iosHint ? (
+              {safariSwitch ? (
+                <>
+                  Vous utilisez un navigateur autre que Safari sur iPhone : Apple autorise
+                  l'installation uniquement depuis Safari. Ouvrez{" "}
+                  <span className="font-medium text-foreground">{window.location.origin}</span> dans
+                  Safari, puis appuyez sur{" "}
+                  <Share className="inline size-3.5 align-text-bottom" aria-hidden /> Partager → «
+                  Sur l'écran d'accueil ».
+                </>
+              ) : iosHint ? (
                 <>
                   Sur iPhone/iPad : appuyez sur{" "}
                   <Share className="inline size-3.5 align-text-bottom" aria-hidden /> Partager, puis
@@ -134,6 +154,32 @@ export function InstallAppBanner() {
           {!manual && (
             <Button size="sm" className="mt-2" onClick={install}>
               Installer
+            </Button>
+          )}
+          {manual && safariSwitch && (
+            <Button
+              size="sm"
+              variant="outline"
+              className="mt-2"
+              onClick={async () => {
+                try {
+                  await navigator.clipboard.writeText(window.location.origin);
+                  setCopied(true);
+                  window.setTimeout(() => setCopied(false), 2500);
+                } catch {
+                  /* ignore */
+                }
+              }}
+            >
+              {copied ? (
+                <>
+                  <Check className="size-4" aria-hidden /> Adresse copiée !
+                </>
+              ) : (
+                <>
+                  <Copy className="size-4" aria-hidden /> Copier l'adresse pour Safari
+                </>
+              )}
             </Button>
           )}
         </div>
