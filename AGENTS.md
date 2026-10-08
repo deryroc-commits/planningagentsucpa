@@ -11,3 +11,4 @@
 
 - Planning print CSS must neutralize all screen-only ancestor spacing and minimum heights, and remove inter-page flex gaps; otherwise physical sheets gain blank pages.
 - Keep authenticated browser print regressions in tests/printing_test.py; verify actual PDF page counts using the user's session without modifying planning data.
+- Print CSS regressions must create their browser contexts with service_workers="block"; the PWA offline cache otherwise serves a stale stylesheet and the run proves nothing.
