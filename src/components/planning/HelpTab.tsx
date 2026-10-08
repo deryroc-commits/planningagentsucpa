@@ -635,7 +635,6 @@ const SECTIONS: Section[] = [
         title: "iPhone vs Android : pourquoi cette différence ?",
         text: "Sur Android, Chrome et Edge détectent l'application et proposent directement « Installer l'application » dans leur menu. Sur iPhone/iPad, Apple impose son moteur Safari à tous les navigateurs et réserve l'installation à Safari : Chrome, Firefox et Edge ne proposent donc jamais « Sur l'écran d'accueil ». Il faut ouvrir l'adresse dans Safari, puis Partager → « Sur l'écran d'accueil ». Le bandeau d'installation détecte un autre navigateur sur iPhone et propose de copier l'adresse pour la coller dans Safari.",
       },
-
       {
         title: "Bandeau « Mode hors ligne »",
         text: "Dès que la connexion est perdue (ou bloquée par le réseau d'entreprise), un bandeau rouge s'affiche en haut de l'écran. Il confirme que les données locales de l'appareil sont utilisées et disparaît automatiquement au retour du réseau.",
